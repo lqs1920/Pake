@@ -57,6 +57,11 @@ jobs:
           src-tauri/target/
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+    - name: Add aarch64-apple-darwin target (MacOS only)
+      if: matrix.os == 'macos-latest'
+      run: |
+        rustup target add aarch64-apple-darwin
+
     - name: build for windows
       if: matrix.os == 'windows-latest'
       shell: pwsh
